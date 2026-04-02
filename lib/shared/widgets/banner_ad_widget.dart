@@ -13,17 +13,11 @@ class _BannerAdWidgetState extends State<BannerAdWidget> {
   BannerAd? _bannerAd;
   bool _isLoaded = false;
 
-  // TODO: 광고 단위가 활성화되면 테스트 ID를 실제 ID로 교체
-  // Android 실제: ca-app-pub-9273559143259526/4863192636
-  static const _testMode = true;
-
   String get _adUnitId {
     if (Platform.isAndroid) {
-      return _testMode
-          ? 'ca-app-pub-3940256099942544/6300978111'
-          : 'ca-app-pub-9273559143259526/4863192636';
+      return 'ca-app-pub-9273559143259526/4863192636'; // 실제 광고 ID
     } else {
-      return 'ca-app-pub-3940256099942544/2934735716';
+      return 'ca-app-pub-3940256099942544/2934735716'; // iOS 테스트 광고 ID
     }
   }
 
