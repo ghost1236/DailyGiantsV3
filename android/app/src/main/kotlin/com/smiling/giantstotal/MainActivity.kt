@@ -1,4 +1,4 @@
-package com.smiling.daily_giants
+package com.smiling.giantstotal
 
 import io.flutter.embedding.android.FlutterActivity
 

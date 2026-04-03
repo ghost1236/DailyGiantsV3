@@ -1,7 +1,7 @@
 name: daily_giants
 description: "데일리 자이언츠 - 롯데 자이언츠 팬 앱"
 publish_to: 'none'
-version: 2.0.0+1
+version: 2.0.1+1043
 
 environment:
   sdk: '>=3.4.3 <4.0.0'
