@@ -485,7 +485,7 @@ class _CalendarView extends StatelessWidget {
                                   size: 13, color: AppColors.textTertiary),
                               const SizedBox(width: 4),
                               Text(
-                                s.date,
+                                s.dateDisplay,
                                 style: const TextStyle(
                                   color: AppColors.textSecondary,
                                   fontSize: 12,
@@ -714,6 +714,8 @@ class _ScheduleCard extends StatelessWidget {
             color: AppColors.divider,
             margin: const EdgeInsets.symmetric(horizontal: 12),
           ),
+          TeamLogo(team: schedule.teamName, size: 32),
+          const SizedBox(width: 10),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,

@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1024 500" width="1024" height="500">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0A1628"/>
+      <stop offset="60%" stop-color="#0E1F3D"/>
+      <stop offset="100%" stop-color="#162D54"/>
+    </linearGradient>
+    <clipPath id="screen1"><rect x="558" y="55" width="182" height="394" rx="6"/></clipPath>
+    <clipPath id="screen2"><rect x="778" y="25" width="182" height="394" rx="6"/></clipPath>
+    <style>text { font-family: 'Arial', 'Helvetica Neue', sans-serif; }</style>
+  </defs>
+
+  <!-- Background (oversized) -->
+  <rect width="1200" height="600" fill="#0A1628"/>
+  <rect width="1024" height="500" fill="url(#bg)"/>
+
+  <!-- Subtle glow behind phones -->
+  <circle cx="750" cy="250" r="280" fill="#1A3A6A" opacity="0.15"/>
+
+  <!-- === LEFT SIDE: Text === -->
+  <text x="60" y="150" fill="#FFFFFF" font-size="72" font-weight="bold" letter-spacing="-2">데일리</text>
+  <text x="60" y="235" fill="#FFFFFF" font-size="72" font-weight="bold" letter-spacing="-2">자이언츠</text>
+  <text x="60" y="290" fill="#AABBCC" font-size="20">롯데 자이언츠 팬을 위한 필수 앱</text>
+
+  <!-- Feature tags -->
+  <g transform="translate(60, 320)">
+    <rect x="0" y="0" width="100" height="34" rx="17" fill="none" stroke="#556677" stroke-width="1.2"/>
+    <text x="50" y="22" text-anchor="middle" fill="#CCDDEE" font-size="13">실시간 스코어</text>
+    <rect x="112" y="0" width="85" height="34" rx="17" fill="none" stroke="#556677" stroke-width="1.2"/>
+    <text x="154" y="22" text-anchor="middle" fill="#CCDDEE" font-size="13">경기 일정</text>
+    <rect x="209" y="0" width="55" height="34" rx="17" fill="none" stroke="#556677" stroke-width="1.2"/>
+    <text x="236" y="22" text-anchor="middle" fill="#CCDDEE" font-size="13">순위</text>
+    <rect x="276" y="0" width="75" height="34" rx="17" fill="none" stroke="#556677" stroke-width="1.2"/>
+    <text x="313" y="22" text-anchor="middle" fill="#CCDDEE" font-size="13">직관정보</text>
+    <rect x="363" y="0" width="65" height="34" rx="17" fill="none" stroke="#556677" stroke-width="1.2"/>
+    <text x="395" y="22" text-anchor="middle" fill="#CCDDEE" font-size="13">응원가</text>
+  </g>
+
+  <!-- === Phone 1 (front - Score) === -->
+  <g>
+    <!-- Phone frame -->
+    <rect x="545" y="35" width="208" height="435" rx="22" fill="#1C1C1E" stroke="#444444" stroke-width="1.5"/>
+    <!-- Notch -->
+    <rect x="619" y="38" width="60" height="8" rx="4" fill="#000000"/>
+    <!-- Screen with real screenshot -->
+    <g clip-path="url(#screen1)">
+      <image xlink:href="screen_score.png" x="510" y="-165" width="290" height="630" preserveAspectRatio="xMidYMax slice"/>
+    </g>
+    <!-- Screen border radius overlay -->
+    <rect x="555" y="52" width="188" height="400" rx="6" fill="none" stroke="#1C1C1E" stroke-width="1"/>
+  </g>
+
+  <!-- === Phone 2 (back-right - Schedule) === -->
+  <g>
+    <!-- Phone frame -->
+    <rect x="765" y="5" width="208" height="435" rx="22" fill="#1C1C1E" stroke="#444444" stroke-width="1.5"/>
+    <!-- Notch -->
+    <rect x="839" y="8" width="60" height="8" rx="4" fill="#000000"/>
+    <!-- Screen with real screenshot -->
+    <g clip-path="url(#screen2)">
+      <image xlink:href="screen_schedule.png" x="730" y="-195" width="290" height="630" preserveAspectRatio="xMidYMax slice"/>
+    </g>
+    <rect x="775" y="22" width="188" height="400" rx="6" fill="none" stroke="#1C1C1E" stroke-width="1"/>
+  </g>
+</svg>

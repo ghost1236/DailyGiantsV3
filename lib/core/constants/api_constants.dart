@@ -12,7 +12,10 @@ class ApiConstants {
   static const String pitcherRank = '/apis/PitcherRank';
   static const String playerList = '/apis/player';
   static String playerDetail(String id) => '/apis/player/$id';
-  static const String teamSongList = '/apis/teamsonglist';
-  static const String playerSongList = '/apis/playersonglist';
+  static const String teamSongList = '/apis/teamsongs';
+  static const String playerSongList = '/apis/playersongs';
   static const String cheerleaderList = '/apis/cheerleaderlist';
+  static const String scoreboard = '/apis/scoreboard';
+  static const String stadiumList = '/apis/stadiums';
+  static String stadiumDetail(int id) => '/apis/stadiums/$id';
 }

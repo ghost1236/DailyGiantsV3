@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:just_audio/just_audio.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../shared/widgets/app_header.dart';
 import '../../../shared/widgets/loading_indicator.dart';
@@ -112,6 +112,7 @@ class _SongList extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final songsAsync = ref.watch(provider);
+    final currentPlaying = ref.watch(currentPlayingSongProvider);
 
     return songsAsync.when(
       data: (songs) => ListView.builder(
@@ -119,13 +120,19 @@ class _SongList extends ConsumerWidget {
         itemCount: songs.length,
         itemBuilder: (context, index) {
           final song = songs[index];
-          final hasYoutube = song.youtubeUrl != null;
+          final isPlaying = currentPlaying == song.id;
 
-          return Container(
+          return AnimatedContainer(
+            duration: const Duration(milliseconds: 300),
             margin: const EdgeInsets.only(bottom: 8),
             decoration: BoxDecoration(
-              color: AppColors.cardBackground,
+              color: isPlaying
+                  ? AppColors.accent.withOpacity(0.08)
+                  : AppColors.cardBackground,
               borderRadius: BorderRadius.circular(14),
+              border: isPlaying
+                  ? Border.all(color: AppColors.accent.withOpacity(0.3))
+                  : null,
               boxShadow: [
                 BoxShadow(
                   color: Colors.black.withOpacity(0.04),
@@ -134,119 +141,71 @@ class _SongList extends ConsumerWidget {
                 ),
               ],
             ),
-            child: ListTile(
-              contentPadding:
-                  const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
-              leading: Container(
-                width: 44,
-                height: 44,
-                decoration: BoxDecoration(
-                  color: hasYoutube
-                      ? const Color(0xFFFF0000).withOpacity(0.1)
-                      : AppColors.cardBackgroundLight,
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: song.thumbnail != null
-                    ? ClipRRect(
-                        borderRadius: BorderRadius.circular(12),
-                        child: Image.network(
-                          headers: const {
-                            'User-Agent': 'Mozilla/5.0 (Linux; Android 10)'
-                          },
-                          song.thumbnail!,
-                          fit: BoxFit.cover,
-                          errorBuilder: (_, __, ___) => Icon(
-                            hasYoutube
-                                ? Icons.play_circle_fill
-                                : Icons.music_note,
-                            color: hasYoutube
-                                ? const Color(0xFFFF0000)
-                                : AppColors.textTertiary,
-                            size: 24,
-                          ),
-                        ),
-                      )
-                    : Icon(
-                        hasYoutube
-                            ? Icons.play_circle_fill
-                            : Icons.music_note,
-                        color: hasYoutube
-                            ? const Color(0xFFFF0000)
-                            : AppColors.textTertiary,
-                        size: 24,
-                      ),
-              ),
-              title: Text(
-                song.title,
-                style: const TextStyle(
-                  color: AppColors.textPrimary,
-                  fontSize: 15,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-              subtitle: Row(
-                children: [
-                  if (song.number != null) ...[
-                    Text(
-                      '#${song.number}',
-                      style: const TextStyle(
-                        color: AppColors.accent,
-                        fontSize: 12,
-                        fontWeight: FontWeight.w600,
-                      ),
+            child: Column(
+              children: [
+                ListTile(
+                  contentPadding:
+                      const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
+                  leading: Container(
+                    width: 44,
+                    height: 44,
+                    decoration: BoxDecoration(
+                      color: isPlaying
+                          ? AppColors.accent.withOpacity(0.15)
+                          : AppColors.cardBackgroundLight,
+                      borderRadius: BorderRadius.circular(12),
                     ),
-                    const SizedBox(width: 8),
-                  ],
-                  Expanded(
-                    child: Text(
-                      song.lyrics,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: const TextStyle(
-                        color: AppColors.textTertiary,
-                        fontSize: 12,
-                      ),
+                    child: Icon(
+                      isPlaying ? Icons.pause_circle_filled : Icons.play_circle_fill,
+                      color: isPlaying ? AppColors.accent : AppColors.textTertiary,
+                      size: 24,
                     ),
                   ),
-                ],
-              ),
-              trailing: hasYoutube
-                  ? Container(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 8, vertical: 4),
-                      decoration: BoxDecoration(
-                        color: const Color(0xFFFF0000).withOpacity(0.1),
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      child: const Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Icon(Icons.play_arrow,
-                              color: Color(0xFFFF0000), size: 16),
-                          SizedBox(width: 2),
-                          Text(
-                            'YouTube',
-                            style: TextStyle(
-                              color: Color(0xFFFF0000),
-                              fontSize: 11,
-                              fontWeight: FontWeight.w700,
-                            ),
-                          ),
-                        ],
-                      ),
-                    )
-                  : const Icon(
-                      Icons.lyrics_outlined,
-                      color: AppColors.textTertiary,
-                      size: 20,
+                  title: Text(
+                    song.title,
+                    style: TextStyle(
+                      color: isPlaying ? AppColors.accent : AppColors.textPrimary,
+                      fontSize: 15,
+                      fontWeight: FontWeight.w600,
                     ),
-              onTap: () {
-                if (hasYoutube) {
-                  _openYoutube(song.youtubeUrl!);
-                } else {
-                  _showLyricsSheet(context, song);
-                }
-              },
+                  ),
+                  subtitle: Row(
+                    children: [
+                      if (song.number != null) ...[
+                        Text(
+                          '#${song.number}',
+                          style: const TextStyle(
+                            color: AppColors.accent,
+                            fontSize: 12,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                        const SizedBox(width: 8),
+                      ],
+                      Expanded(
+                        child: Text(
+                          song.lyrics,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: const TextStyle(
+                            color: AppColors.textTertiary,
+                            fontSize: 12,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  trailing: isPlaying
+                      ? _PlayingIndicator()
+                      : const Icon(
+                          Icons.music_note_outlined,
+                          color: AppColors.textTertiary,
+                          size: 20,
+                        ),
+                  onTap: () => _togglePlay(ref, song),
+                ),
+                if (isPlaying) _LyricsPanel(song: song),
+              ],
             ),
           );
         },
@@ -256,104 +215,134 @@ class _SongList extends ConsumerWidget {
     );
   }
 
-  Future<void> _openYoutube(String url) async {
-    // 유튜브 앱으로 열기 시도
-    final videoUri = Uri.parse(url);
-    final appUrl = url
-        .replaceFirst('https://www.youtube.com/', 'vnd.youtube://')
-        .replaceFirst('https://youtube.com/', 'vnd.youtube://');
-    final appUri = Uri.parse(appUrl);
+  Future<void> _togglePlay(WidgetRef ref, CheeringSong song) async {
+    final player = ref.read(audioPlayerProvider);
+    final currentPlaying = ref.read(currentPlayingSongProvider);
 
-    try {
-      final launched =
-          await launchUrl(appUri, mode: LaunchMode.externalApplication);
-      if (!launched) {
-        await launchUrl(videoUri, mode: LaunchMode.externalApplication);
+    if (currentPlaying == song.id) {
+      await player.stop();
+      ref.read(currentPlayingSongProvider.notifier).state = null;
+    } else {
+      ref.read(currentPlayingSongProvider.notifier).state = song.id;
+      try {
+        await player.setUrl(song.audioUrl);
+        player.play();
+        player.playerStateStream.listen((state) {
+          if (state.processingState == ProcessingState.completed) {
+            ref.read(currentPlayingSongProvider.notifier).state = null;
+          }
+        });
+      } catch (e) {
+        ref.read(currentPlayingSongProvider.notifier).state = null;
       }
-    } catch (_) {
-      await launchUrl(videoUri, mode: LaunchMode.externalApplication);
     }
   }
+}
 
-  void _showLyricsSheet(BuildContext context, CheeringSong song) {
-    showModalBottomSheet(
-      context: context,
-      backgroundColor: AppColors.cardBackground,
-      isScrollControlled: true,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-      ),
-      builder: (context) => DraggableScrollableSheet(
-        initialChildSize: 0.5,
-        maxChildSize: 0.85,
-        minChildSize: 0.3,
-        expand: false,
-        builder: (context, scrollController) => SingleChildScrollView(
-          controller: scrollController,
-          padding: const EdgeInsets.all(24),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Center(
-                child: Container(
-                  width: 40,
-                  height: 4,
-                  decoration: BoxDecoration(
-                    color: AppColors.divider,
-                    borderRadius: BorderRadius.circular(2),
+class _LyricsPanel extends StatelessWidget {
+  final CheeringSong song;
+
+  const _LyricsPanel({required this.song});
+
+  @override
+  Widget build(BuildContext context) {
+    final allLyrics = <String>[
+      if (song.lyrics.isNotEmpty) song.lyrics,
+      if (song.lyrics2 != null && song.lyrics2!.isNotEmpty) song.lyrics2!,
+      if (song.lyrics3 != null && song.lyrics3!.isNotEmpty) song.lyrics3!,
+    ];
+
+    if (allLyrics.isEmpty) return const SizedBox.shrink();
+
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+      child: Container(
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: AppColors.cardBackgroundLight,
+          borderRadius: BorderRadius.circular(12),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Row(
+              children: [
+                Icon(Icons.lyrics_outlined, size: 14, color: AppColors.accent),
+                SizedBox(width: 6),
+                Text(
+                  '가사',
+                  style: TextStyle(
+                    color: AppColors.accent,
+                    fontSize: 12,
+                    fontWeight: FontWeight.w700,
                   ),
                 ),
+              ],
+            ),
+            const SizedBox(height: 10),
+            Text(
+              allLyrics.join('\n\n'),
+              style: const TextStyle(
+                color: AppColors.textSecondary,
+                fontSize: 14,
+                height: 1.8,
               ),
-              const SizedBox(height: 20),
-              Row(
-                children: [
-                  if (song.number != null) ...[
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 8, vertical: 3),
-                      decoration: BoxDecoration(
-                        color: AppColors.accent.withOpacity(0.1),
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      child: Text(
-                        '#${song.number}',
-                        style: const TextStyle(
-                          color: AppColors.accent,
-                          fontSize: 13,
-                          fontWeight: FontWeight.w700,
-                        ),
-                      ),
-                    ),
-                    const SizedBox(width: 8),
-                  ],
-                  Expanded(
-                    child: Text(
-                      song.title,
-                      style: const TextStyle(
-                        color: AppColors.textPrimary,
-                        fontSize: 18,
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 16),
-              const Divider(color: AppColors.divider),
-              const SizedBox(height: 16),
-              Text(
-                song.lyrics.isNotEmpty ? song.lyrics : '가사 정보가 없습니다',
-                style: const TextStyle(
-                  color: AppColors.textSecondary,
-                  fontSize: 15,
-                  height: 1.8,
-                ),
-              ),
-              const SizedBox(height: 24),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
+    );
+  }
+}
+
+class _PlayingIndicator extends StatefulWidget {
+  @override
+  State<_PlayingIndicator> createState() => _PlayingIndicatorState();
+}
+
+class _PlayingIndicatorState extends State<_PlayingIndicator>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 800),
+    )..repeat(reverse: true);
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedBuilder(
+      animation: _controller,
+      builder: (context, _) {
+        return Row(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: List.generate(3, (i) {
+            final delay = i * 0.2;
+            final value = ((_controller.value + delay) % 1.0);
+            return Container(
+              width: 3,
+              height: 8 + value * 10,
+              margin: const EdgeInsets.symmetric(horizontal: 1),
+              decoration: BoxDecoration(
+                color: AppColors.accent,
+                borderRadius: BorderRadius.circular(2),
+              ),
+            );
+          }),
+        );
+      },
     );
   }
 }

@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <!-- Wizard hat -->
+  <path d="M40 44 L64 6 L88 44Z" fill="#1A237E"/>
+  <path d="M40 44 L64 10 L88 44Z" fill="#283593"/>
+  <!-- Hat brim -->
+  <ellipse cx="64" cy="44" rx="28" ry="6" fill="#1A237E"/>
+  <!-- Star on hat -->
+  <polygon points="64,18 66,24 72,24 67,28 69,34 64,30 59,34 61,28 56,24 62,24" fill="#FFD700"/>
+  <!-- Head -->
+  <circle cx="64" cy="60" r="22" fill="#FFE0B2"/>
+  <!-- Eyes -->
+  <circle cx="55" cy="56" r="6" fill="#FFFFFF"/>
+  <circle cx="73" cy="56" r="6" fill="#FFFFFF"/>
+  <circle cx="56" cy="56" r="4" fill="#000000"/>
+  <circle cx="74" cy="56" r="4" fill="#000000"/>
+  <circle cx="57" cy="54" r="1.5" fill="#FFFFFF"/>
+  <circle cx="75" cy="54" r="1.5" fill="#FFFFFF"/>
+  <!-- Glasses -->
+  <circle cx="55" cy="56" r="8" fill="none" stroke="#000000" stroke-width="2"/>
+  <circle cx="73" cy="56" r="8" fill="none" stroke="#000000" stroke-width="2"/>
+  <line x1="63" y1="56" x2="65" y2="56" stroke="#000000" stroke-width="2"/>
+  <!-- Beard -->
+  <path d="M48 68 Q56 72 64 68 Q72 72 80 68 Q76 82 64 86 Q52 82 48 68Z" fill="#E0E0E0"/>
+  <!-- Body -->
+  <ellipse cx="64" cy="104" rx="22" ry="14" fill="#283593"/>
+  <!-- Robe collar -->
+  <path d="M48 88 L64 94 L80 88" fill="none" stroke="#C8102E" stroke-width="2.5"/>
+</svg>

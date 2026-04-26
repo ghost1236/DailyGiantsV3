@@ -1,0 +1,171 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 700" width="800" height="700">
+  <defs>
+    <style>text { font-family: Arial, sans-serif; }</style>
+    <!-- Grass pattern -->
+    <pattern id="grass" width="8" height="8" patternUnits="userSpaceOnUse">
+      <rect width="8" height="8" fill="#3A8B3A"/>
+      <rect x="0" y="0" width="4" height="8" fill="#359035"/>
+    </pattern>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="700" fill="#2C2C2C"/>
+
+  <!-- Title -->
+  <text x="400" y="28" text-anchor="middle" fill="#FFFFFF" font-size="16" font-weight="bold">사직야구장 좌석 배치도</text>
+  <text x="400" y="46" text-anchor="middle" fill="#999999" font-size="11">SAJIK BASEBALL STADIUM</text>
+
+  <!-- ====== SEATING TIERS (outermost to innermost) ====== -->
+
+  <!-- Tier 5: 스카이박스 (outermost) -->
+  <path d="M50 520 Q50 100 400 55 Q750 100 750 520" fill="none" stroke="#555555" stroke-width="32" stroke-linecap="round"/>
+  <!-- Sky box labels -->
+  <text x="105" y="310" text-anchor="middle" fill="#CCCCCC" font-size="8" transform="rotate(-60,105,310)">SKY BOX</text>
+  <text x="695" y="310" text-anchor="middle" fill="#CCCCCC" font-size="8" transform="rotate(60,695,310)">SKY BOX</text>
+  <text x="400" y="72" text-anchor="middle" fill="#CCCCCC" font-size="8">SKY BOX</text>
+
+  <!-- Tier 4: 외야석 상단 -->
+  <!-- 3루 외야 - 홈응원석 -->
+  <path d="M82 500 Q82 160 260 85" fill="none" stroke="#C8102E" stroke-width="28" stroke-linecap="butt"/>
+  <text x="140" y="250" text-anchor="middle" fill="#FFFFFF" font-size="9" font-weight="bold" transform="rotate(-55,140,250)">3루 외야</text>
+  <text x="155" y="310" text-anchor="middle" fill="#FFD0D0" font-size="7" transform="rotate(-50,155,310)">홈응원석</text>
+
+  <!-- 중앙 외야 -->
+  <path d="M260 85 Q400 55 540 85" fill="none" stroke="#1B5E20" stroke-width="28" stroke-linecap="butt"/>
+  <text x="400" y="88" text-anchor="middle" fill="#FFFFFF" font-size="10" font-weight="bold">중앙 외야</text>
+
+  <!-- 1루 외야 - 원정응원석 -->
+  <path d="M540 85 Q718 160 718 500" fill="none" stroke="#E85454" stroke-width="28" stroke-linecap="butt"/>
+  <text x="660" y="250" text-anchor="middle" fill="#FFFFFF" font-size="9" font-weight="bold" transform="rotate(55,660,250)">1루 외야</text>
+  <text x="645" y="310" text-anchor="middle" fill="#FFD0D0" font-size="7" transform="rotate(50,645,310)">원정응원석</text>
+
+  <!-- Tier 3: 내야 상단석 -->
+  <path d="M110 500 Q110 200 280 115" fill="none" stroke="#002B7F" stroke-width="24" stroke-linecap="butt"/>
+  <text x="170" y="370" text-anchor="middle" fill="#FFFFFF" font-size="10" font-weight="bold" transform="rotate(-40,170,370)">3루 내야</text>
+
+  <path d="M520 115 Q690 200 690 500" fill="none" stroke="#002B7F" stroke-width="24" stroke-linecap="butt"/>
+  <text x="630" y="370" text-anchor="middle" fill="#FFFFFF" font-size="10" font-weight="bold" transform="rotate(40,630,370)">1루 내야</text>
+
+  <!-- Tier 2: 내야 지정석 -->
+  <path d="M138 500 Q138 240 300 145" fill="none" stroke="#1A4DA8" stroke-width="22" stroke-linecap="butt"/>
+  <text x="200" y="390" text-anchor="middle" fill="#FFFFFF" font-size="9" transform="rotate(-35,200,390)">3루 내야지정</text>
+
+  <path d="M500 145 Q662 240 662 500" fill="none" stroke="#1A4DA8" stroke-width="22" stroke-linecap="butt"/>
+  <text x="600" y="390" text-anchor="middle" fill="#FFFFFF" font-size="9" transform="rotate(35,600,390)">1루 내야지정</text>
+
+  <!-- Tier 1: 중앙 VIP / 테이블석 (behind home plate) -->
+  <!-- 테이블석 좌 -->
+  <path d="M162 500 Q162 280 320 170" fill="none" stroke="#D4A017" stroke-width="18" stroke-linecap="butt"/>
+  <text x="225" y="420" text-anchor="middle" fill="#FFFFFF" font-size="8" font-weight="bold" transform="rotate(-30,225,420)">테이블석</text>
+
+  <!-- 중앙지정석 VIP -->
+  <path d="M320 170 Q400 140 480 170" fill="none" stroke="#B8860B" stroke-width="18" stroke-linecap="butt"/>
+  <text x="400" y="165" text-anchor="middle" fill="#FFFFFF" font-size="9" font-weight="bold">VIP</text>
+
+  <!-- 테이블석 우 -->
+  <path d="M480 170 Q638 280 638 500" fill="none" stroke="#D4A017" stroke-width="18" stroke-linecap="butt"/>
+  <text x="575" y="420" text-anchor="middle" fill="#FFFFFF" font-size="8" font-weight="bold" transform="rotate(30,575,420)">테이블석</text>
+
+  <!-- ====== FIELD ====== -->
+  <!-- Outfield grass (big arc) -->
+  <path d="M185 500 Q185 260 400 180 Q615 260 615 500Z" fill="url(#grass)"/>
+
+  <!-- Warning track -->
+  <path d="M195 500 Q195 270 400 190 Q605 270 605 500" fill="none" stroke="#B8860B" stroke-width="6" opacity="0.4"/>
+
+  <!-- Infield dirt (circle) -->
+  <circle cx="400" cy="420" r="95" fill="#C8A06A"/>
+
+  <!-- Infield grass (inside diamond) -->
+  <polygon points="400,340 480,420 400,500 320,420" fill="#3A8B3A" stroke="none"/>
+  <circle cx="400" cy="420" r="60" fill="#3A8B3A"/>
+
+  <!-- Pitcher's mound -->
+  <circle cx="400" cy="400" r="10" fill="#C8A06A" stroke="#A08050" stroke-width="1.5"/>
+  <rect x="397" y="396" width="6" height="2" fill="#FFFFFF" rx="1"/>
+
+  <!-- Base paths -->
+  <line x1="400" y1="340" x2="480" y2="420" stroke="#FFFFFF" stroke-width="2"/>
+  <line x1="480" y1="420" x2="400" y2="500" stroke="#FFFFFF" stroke-width="2"/>
+  <line x1="400" y1="500" x2="320" y2="420" stroke="#FFFFFF" stroke-width="2"/>
+  <line x1="320" y1="420" x2="400" y2="340" stroke="#FFFFFF" stroke-width="2"/>
+
+  <!-- Bases -->
+  <rect x="396" y="336" width="8" height="8" fill="#FFFFFF" transform="rotate(45,400,340)"/>
+  <rect x="476" y="416" width="8" height="8" fill="#FFFFFF" transform="rotate(45,480,420)"/>
+  <rect x="316" y="416" width="8" height="8" fill="#FFFFFF" transform="rotate(45,320,420)"/>
+
+  <!-- Home plate -->
+  <polygon points="400,502 395,508 400,514 405,508" fill="#FFFFFF"/>
+
+  <!-- Batter's boxes -->
+  <rect x="385" y="502" width="8" height="16" fill="none" stroke="#FFFFFF" stroke-width="0.8"/>
+  <rect x="407" y="502" width="8" height="16" fill="none" stroke="#FFFFFF" stroke-width="0.8"/>
+
+  <!-- Foul lines -->
+  <line x1="400" y1="510" x2="185" y2="500" stroke="#FFFFFF" stroke-width="1.5"/>
+  <line x1="400" y1="510" x2="615" y2="500" stroke="#FFFFFF" stroke-width="1.5"/>
+  <line x1="400" y1="510" x2="80" y2="540" stroke="#FFFFFF" stroke-width="1.5"/>
+  <line x1="400" y1="510" x2="720" y2="540" stroke="#FFFFFF" stroke-width="1.5"/>
+
+  <!-- Infield arc -->
+  <path d="M310 500 Q310 380 400 340 Q490 380 490 500" fill="none" stroke="#A08050" stroke-width="1" stroke-dasharray="3,3"/>
+
+  <!-- Base labels -->
+  <text x="400" y="330" text-anchor="middle" fill="#FFFFFF" font-size="8">2B</text>
+  <text x="495" y="418" text-anchor="start" fill="#FFFFFF" font-size="8">1B</text>
+  <text x="305" y="418" text-anchor="end" fill="#FFFFFF" font-size="8">3B</text>
+  <text x="400" y="530" text-anchor="middle" fill="#FFFFFF" font-size="8">HOME</text>
+
+  <!-- Dugouts -->
+  <rect x="295" y="520" width="40" height="10" rx="3" fill="#444444" stroke="#666666" stroke-width="1"/>
+  <text x="315" y="528" text-anchor="middle" fill="#FFFFFF" font-size="6">3루 덕아웃</text>
+  <rect x="465" y="520" width="40" height="10" rx="3" fill="#444444" stroke="#666666" stroke-width="1"/>
+  <text x="485" y="528" text-anchor="middle" fill="#FFFFFF" font-size="6">1루 덕아웃</text>
+
+  <!-- Bullpens -->
+  <rect x="175" y="505" width="30" height="12" rx="3" fill="#555555" stroke="#777777" stroke-width="0.8"/>
+  <text x="190" y="514" text-anchor="middle" fill="#CCCCCC" font-size="5">불펜</text>
+  <rect x="595" y="505" width="30" height="12" rx="3" fill="#555555" stroke="#777777" stroke-width="0.8"/>
+  <text x="610" y="514" text-anchor="middle" fill="#CCCCCC" font-size="5">불펜</text>
+
+  <!-- ====== CONCOURSE LABELS ====== -->
+  <text x="400" y="555" text-anchor="middle" fill="#999999" font-size="9">── 관중석 입구 ──</text>
+
+  <!-- ====== LEGEND ====== -->
+  <rect x="40" y="580" width="720" height="105" rx="10" fill="#3A3A3A" stroke="#555555" stroke-width="1"/>
+  <text x="400" y="600" text-anchor="middle" fill="#FFFFFF" font-size="12" font-weight="bold">구역 안내</text>
+
+  <!-- Row 1 -->
+  <rect x="60" y="612" width="14" height="14" rx="3" fill="#C8102E"/>
+  <text x="80" y="624" fill="#E0E0E0" font-size="10">3루 외야 (홈응원석)</text>
+
+  <rect x="230" y="612" width="14" height="14" rx="3" fill="#E85454"/>
+  <text x="250" y="624" fill="#E0E0E0" font-size="10">1루 외야 (원정응원석)</text>
+
+  <rect x="430" y="612" width="14" height="14" rx="3" fill="#1B5E20"/>
+  <text x="450" y="624" fill="#E0E0E0" font-size="10">중앙 외야</text>
+
+  <rect x="590" y="612" width="14" height="14" rx="3" fill="#002B7F"/>
+  <text x="610" y="624" fill="#E0E0E0" font-size="10">내야석</text>
+
+  <!-- Row 2 -->
+  <rect x="60" y="640" width="14" height="14" rx="3" fill="#1A4DA8"/>
+  <text x="80" y="652" fill="#E0E0E0" font-size="10">내야 지정석</text>
+
+  <rect x="230" y="640" width="14" height="14" rx="3" fill="#B8860B"/>
+  <text x="250" y="652" fill="#E0E0E0" font-size="10">중앙지정석 (VIP)</text>
+
+  <rect x="430" y="640" width="14" height="14" rx="3" fill="#D4A017"/>
+  <text x="450" y="652" fill="#E0E0E0" font-size="10">테이블석</text>
+
+  <rect x="590" y="640" width="14" height="14" rx="3" fill="#555555"/>
+  <text x="610" y="652" fill="#E0E0E0" font-size="10">스카이박스</text>
+
+  <!-- Row 3 -->
+  <rect x="60" y="668" width="14" height="14" rx="3" fill="#C8A06A"/>
+  <text x="80" y="680" fill="#E0E0E0" font-size="10">내야 더트</text>
+
+  <rect x="230" y="668" width="14" height="14" rx="3" fill="#3A8B3A"/>
+  <text x="250" y="680" fill="#E0E0E0" font-size="10">잔디</text>
+</svg>

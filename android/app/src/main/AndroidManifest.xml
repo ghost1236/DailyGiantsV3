@@ -2,7 +2,8 @@
     <application
         android:label="데일리 자이언츠"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/ic_launcher"
+        android:usesCleartextTraffic="true">
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -58,5 +59,17 @@
             <data android:scheme="vnd.youtube"/>
         </intent>
         <package android:name="com.google.android.youtube"/>
+        <!-- Naver Map -->
+        <intent>
+            <action android:name="android.intent.action.VIEW"/>
+            <data android:scheme="nmap"/>
+        </intent>
+        <package android:name="com.nhn.android.nmap"/>
+        <!-- Kakao Map -->
+        <intent>
+            <action android:name="android.intent.action.VIEW"/>
+            <data android:scheme="kakaomap"/>
+        </intent>
+        <package android:name="net.daum.android.map"/>
     </queries>
 </manifest>

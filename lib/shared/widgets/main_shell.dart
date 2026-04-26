@@ -12,9 +12,8 @@ class MainShell extends StatelessWidget {
     if (location.startsWith('/scoreboard')) return 0;
     if (location.startsWith('/schedule')) return 1;
     if (location.startsWith('/ranking')) return 2;
-    if (location.startsWith('/players')) return 3;
+    if (location.startsWith('/stadiums')) return 3;
     if (location.startsWith('/songs')) return 4;
-    if (location.startsWith('/cheerleaders')) return 5;
     return 0;
   }
 
@@ -27,11 +26,9 @@ class MainShell extends StatelessWidget {
       case 2:
         context.go('/ranking');
       case 3:
-        context.go('/players');
+        context.go('/stadiums');
       case 4:
         context.go('/songs');
-      case 5:
-        context.go('/cheerleaders');
     }
   }
 
@@ -58,7 +55,8 @@ class MainShell extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 _NavItem(
-                  assetIcon: 'assets/icons/ic_baseball.png',
+                  icon: Icons.sports_baseball_outlined,
+                  activeIcon: Icons.sports_baseball,
                   label: '스코어',
                   isActive: currentIndex == 0,
                   onTap: () => _onTap(context, 0),
@@ -76,8 +74,9 @@ class MainShell extends StatelessWidget {
                   onTap: () => _onTap(context, 2),
                 ),
                 _NavItem(
-                  assetIcon: 'assets/icons/ic_player.png',
-                  label: '선수단',
+                  icon: Icons.stadium_outlined,
+                  activeIcon: Icons.stadium,
+                  label: '직관정보',
                   isActive: currentIndex == 3,
                   onTap: () => _onTap(context, 3),
                 ),
@@ -86,13 +85,6 @@ class MainShell extends StatelessWidget {
                   label: '응원가',
                   isActive: currentIndex == 4,
                   onTap: () => _onTap(context, 4),
-                ),
-                _NavItem(
-                  icon: Icons.stars_outlined,
-                  activeIcon: Icons.stars,
-                  label: '응원단',
-                  isActive: currentIndex == 5,
-                  onTap: () => _onTap(context, 5),
                 ),
               ],
             ),

@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <!-- Helmet -->
+  <path d="M34 50 Q34 18 64 14 Q94 18 94 50" fill="#820024"/>
+  <path d="M36 50 Q36 22 64 18 Q92 22 92 50" fill="#A0002E"/>
+  <!-- Helmet crest -->
+  <path d="M58 14 L64 4 L70 14" fill="#FFD700"/>
+  <!-- Helmet wings -->
+  <path d="M34 40 L20 30 L30 44Z" fill="#FFD700"/>
+  <path d="M94 40 L108 30 L98 44Z" fill="#FFD700"/>
+  <!-- Face -->
+  <circle cx="64" cy="58" r="24" fill="#FFE0B2"/>
+  <!-- Mask/visor -->
+  <path d="M42 50 L86 50 L82 44 L46 44Z" fill="#820024" opacity="0.3"/>
+  <!-- Eyes -->
+  <circle cx="52" cy="54" r="7" fill="#FFFFFF"/>
+  <circle cx="76" cy="54" r="7" fill="#FFFFFF"/>
+  <circle cx="53" cy="54" r="4.5" fill="#820024"/>
+  <circle cx="77" cy="54" r="4.5" fill="#820024"/>
+  <circle cx="54" cy="52" r="2" fill="#FFFFFF"/>
+  <circle cx="78" cy="52" r="2" fill="#FFFFFF"/>
+  <!-- Determined eyebrows -->
+  <path d="M44 44 L56 48" stroke="#5D4037" stroke-width="3" stroke-linecap="round"/>
+  <path d="M84 44 L72 48" stroke="#5D4037" stroke-width="3" stroke-linecap="round"/>
+  <!-- Mouth -->
+  <path d="M56 66 L64 62 L72 66" fill="none" stroke="#5D4037" stroke-width="2" stroke-linecap="round"/>
+  <!-- Body armor -->
+  <ellipse cx="64" cy="98" rx="24" ry="18" fill="#820024"/>
+  <!-- Shield emblem -->
+  <path d="M56 90 L64 86 L72 90 L72 100 L64 104 L56 100Z" fill="#FFD700" opacity="0.8"/>
+  <text x="64" y="98" text-anchor="middle" fill="#820024" font-size="10" font-weight="bold" font-family="Arial">H</text>
+</svg>

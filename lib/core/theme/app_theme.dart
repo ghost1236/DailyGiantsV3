@@ -30,14 +30,14 @@ class AppTheme {
         ),
         iconTheme: IconThemeData(color: AppColors.textPrimary),
       ),
-      tabBarTheme: const TabBarTheme(
+      tabBarTheme: const TabBarThemeData(
         labelColor: AppColors.accent,
         unselectedLabelColor: AppColors.textSecondary,
         indicatorColor: AppColors.accent,
         indicatorSize: TabBarIndicatorSize.label,
         dividerHeight: 0,
       ),
-      cardTheme: CardTheme(
+      cardTheme: CardThemeData(
         color: AppColors.cardBackground,
         elevation: 0,
         shape: RoundedRectangleBorder(

@@ -2,7 +2,7 @@ class MatchSchedule {
   final int idx;
   final int year;
   final int month;
-  final String date; // "03/12(목)"
+  final int date;
   final String teamImg;
   final String teamName;
   final String stadium;
@@ -28,7 +28,7 @@ class MatchSchedule {
       idx: json['idx'] ?? 0,
       year: json['year'] ?? 0,
       month: json['month'] ?? 0,
-      date: json['date'] ?? '',
+      date: json['date'] is int ? json['date'] : int.tryParse(json['date'].toString()) ?? 0,
       teamImg: json['teamImg'] ?? '',
       teamName: json['teamName'] ?? '',
       stadium: json['stadium'] ?? '',
@@ -38,30 +38,24 @@ class MatchSchedule {
     );
   }
 
-  /// "03/12(목)" → day number 12
-  int get dayNumber {
-    final match = RegExp(r'\d+/(\d+)').firstMatch(date);
-    return int.tryParse(match?.group(1) ?? '') ?? 0;
-  }
+  int get dayNumber => date;
 
-  /// "03/12(목)" → "목"
   String get dayOfWeek {
-    final match = RegExp(r'\((.)\)').firstMatch(date);
-    return match?.group(1) ?? '';
+    final dt = dateTime;
+    if (dt == null) return '';
+    const days = ['월', '화', '수', '목', '금', '토', '일'];
+    return days[dt.weekday - 1];
   }
 
-  /// Returns a DateTime for calendar matching
   DateTime? get dateTime {
     try {
-      final match = RegExp(r'(\d+)/(\d+)').firstMatch(date);
-      if (match == null) return null;
-      final m = int.parse(match.group(1)!);
-      final d = int.parse(match.group(2)!);
-      return DateTime(year, m, d);
+      return DateTime(year, month, date);
     } catch (_) {
       return null;
     }
   }
+
+  String get dateDisplay => '$month/$date($dayOfWeek)';
 
   bool get hasScore => score.isNotEmpty && score.contains(':');
 
