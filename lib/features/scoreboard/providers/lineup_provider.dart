@@ -17,7 +17,9 @@ class LineupNotifier extends AsyncNotifier<LineupData?> {
     final response = await client.get(ApiConstants.scoreboard);
     final data = response.data;
 
-    if (data is! Map<String, dynamic> || !data.containsKey('awayTeam')) {
+    if (data is! Map<String, dynamic> ||
+        data['code'] != '0000' ||
+        data['awayTeam'] == null) {
       return null;
     }
 

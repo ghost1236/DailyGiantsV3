@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../core/theme/app_colors.dart';
-import 'banner_ad_widget.dart';
+import '../../features/cheering_song/providers/song_provider.dart';
 
-class MainShell extends StatelessWidget {
+class MainShell extends ConsumerWidget {
   final Widget child;
   const MainShell({super.key, required this.child});
 
@@ -17,7 +18,12 @@ class MainShell extends StatelessWidget {
     return 0;
   }
 
-  void _onTap(BuildContext context, int index) {
+  void _onTap(BuildContext context, WidgetRef ref, int index) {
+    if (index != 4) {
+      final player = ref.read(audioPlayerProvider);
+      player.stop();
+      ref.read(currentPlayingSongProvider.notifier).state = null;
+    }
     switch (index) {
       case 0:
         context.go('/scoreboard');
@@ -33,7 +39,7 @@ class MainShell extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final currentIndex = _currentIndex(context);
     return Scaffold(
       body: child,
@@ -48,7 +54,6 @@ class MainShell extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              const BannerAdWidget(),
               Padding(
             padding: const EdgeInsets.symmetric(vertical: 10),
             child: Row(
@@ -59,32 +64,32 @@ class MainShell extends StatelessWidget {
                   activeIcon: Icons.sports_baseball,
                   label: '스코어',
                   isActive: currentIndex == 0,
-                  onTap: () => _onTap(context, 0),
+                  onTap: () => _onTap(context, ref, 0),
                 ),
                 _NavItem(
                   assetIcon: 'assets/icons/ic_cal.png',
                   label: '일정',
                   isActive: currentIndex == 1,
-                  onTap: () => _onTap(context, 1),
+                  onTap: () => _onTap(context, ref, 1),
                 ),
                 _NavItem(
                   assetIcon: 'assets/icons/ic_rank.png',
                   label: '순위',
                   isActive: currentIndex == 2,
-                  onTap: () => _onTap(context, 2),
+                  onTap: () => _onTap(context, ref, 2),
                 ),
                 _NavItem(
                   icon: Icons.stadium_outlined,
                   activeIcon: Icons.stadium,
                   label: '직관정보',
                   isActive: currentIndex == 3,
-                  onTap: () => _onTap(context, 3),
+                  onTap: () => _onTap(context, ref, 3),
                 ),
                 _NavItem(
                   assetIcon: 'assets/icons/ic_cheersong.png',
                   label: '응원가',
                   isActive: currentIndex == 4,
-                  onTap: () => _onTap(context, 4),
+                  onTap: () => _onTap(context, ref, 4),
                 ),
               ],
             ),

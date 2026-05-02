@@ -44,6 +44,7 @@ class ScoreboardScreen extends ConsumerWidget {
             data: (lineup) {
               if (lineup == null) {
                 return SliverFillRemaining(
+                  hasScrollBody: false,
                   child: Center(
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
@@ -181,6 +182,7 @@ class ScoreboardScreen extends ConsumerWidget {
               child: LoadingIndicator(message: '오늘의 경기 로딩 중...'),
             ),
             error: (e, _) => SliverFillRemaining(
+              hasScrollBody: false,
               child: Center(
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
